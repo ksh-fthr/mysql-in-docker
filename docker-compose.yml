@@ -1,0 +1,41 @@
+version: "3"
+
+networks: 
+  app-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.30.0.0/24
+
+services:
+  app-python:
+    build: ./python/
+    container_name: "python-app"
+    environment:
+      TZ: "Asia/Tokyo"
+    hostname: hermes
+    restart: always
+    tty: true
+    networks: 
+      app-net:
+        ipv4_address: 172.30.0.10
+
+  data-mysql:
+    build: ./mysql/
+    container_name: "docker-mysql-work"
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d # 初期データ投入
+    environment:
+      MYSQL_ROOT_PASSWORD: mysqladmin
+      MYSQL_DATABASE: company
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysqladmin
+      TZ: "Asia/Tokyo"
+    hostname: jolyn
+    restart: always
+    ports:
+      - 3306:3306
+    networks: 
+      app-net:
+        ipv4_address: 172.30.0.100

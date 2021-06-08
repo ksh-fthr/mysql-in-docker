@@ -1,0 +1,100 @@
+/**
+ * 10,000 件処理したときの時間
+ * autocommit なし
+ * loop 外で commit
+ */
+% python sqlalchemy_work.py
+2021-06-08 15:31:14.633875+09:00 process start
+process had got 8.680613994598389sec to done.
+2021-06-08 15:31:23.314489+09:00 process had finished
+
+ログ抜粋( これは 10件処理したときのログ )
+10件に対してまとめてトランザクションがかかっている事がわかる
+
+```
+2021-06-08 15:52:46,799 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2021-06-08 15:52:46,801 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:52:46,801 INFO sqlalchemy.engine.Engine [generated in 0.00026s] {'name': 'employee000001', 'phone': '000001', 'created_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 780246, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 780246, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:52:46,804 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:52:46,804 INFO sqlalchemy.engine.Engine [cached since 0.003321s ago] {'name': 'employee000002', 'phone': '000002', 'created_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782529, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782529, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:52:46,806 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:52:46,806 INFO sqlalchemy.engine.Engine [cached since 0.00499s ago] {'name': 'employee000003', 'phone': '000003', 'created_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782593, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782593, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:52:46,807 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:52:46,807 INFO sqlalchemy.engine.Engine [cached since 0.006349s ago] {'name': 'employee000004', 'phone': '000004', 'created_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782633, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782633, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:52:46,809 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:52:46,809 INFO sqlalchemy.engine.Engine [cached since 0.008276s ago] {'name': 'employee000005', 'phone': '000005', 'created_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782673, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782673, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:52:46,812 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:52:46,813 INFO sqlalchemy.engine.Engine [cached since 0.01162s ago] {'name': 'employee000006', 'phone': '000006', 'created_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782711, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782711, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:52:46,814 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:52:46,814 INFO sqlalchemy.engine.Engine [cached since 0.01341s ago] {'name': 'employee000007', 'phone': '000007', 'created_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782786, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782786, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:52:46,816 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:52:46,816 INFO sqlalchemy.engine.Engine [cached since 0.01495s ago] {'name': 'employee000008', 'phone': '000008', 'created_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782848, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782848, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:52:46,817 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:52:46,818 INFO sqlalchemy.engine.Engine [cached since 0.01665s ago] {'name': 'employee000009', 'phone': '000009', 'created_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782887, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782887, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:52:46,819 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:52:46,820 INFO sqlalchemy.engine.Engine [cached since 0.01851s ago] {'name': 'employee000010', 'phone': '000010', 'created_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782928, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 52, 46, 782928, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:52:46,823 INFO sqlalchemy.engine.Engine COMMIT
+```
+
+
+/**
+ * 10,000 件処理したときの時間
+ * autocommit あり
+ * loop 外で flush
+ */
+% python sqlalchemy_work.py
+2021-06-08 15:34:45.603209+09:00 process start
+process had got 8.878259658813477sec to done.
+2021-06-08 15:34:54.481468+09:00 process had finished
+
+ログ抜粋( これは 10件処理したときのログ )
+10件に対してまとめてトランザクションがかかっている事がわかる
+
+```
+2021-06-08 15:49:04,296 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2021-06-08 15:49:04,298 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:49:04,298 INFO sqlalchemy.engine.Engine [generated in 0.00040s] {'name': 'employee000001', 'phone': '000001', 'created_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 277344, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 277344, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:49:04,302 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:49:04,302 INFO sqlalchemy.engine.Engine [cached since 0.004541s ago] {'name': 'employee000002', 'phone': '000002', 'created_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279356, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279356, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:49:04,305 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:49:04,306 INFO sqlalchemy.engine.Engine [cached since 0.00756s ago] {'name': 'employee000003', 'phone': '000003', 'created_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279418, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279418, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:49:04,309 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:49:04,309 INFO sqlalchemy.engine.Engine [cached since 0.01123s ago] {'name': 'employee000004', 'phone': '000004', 'created_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279465, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279465, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:49:04,312 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:49:04,312 INFO sqlalchemy.engine.Engine [cached since 0.01392s ago] {'name': 'employee000005', 'phone': '000005', 'created_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279509, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279509, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:49:04,314 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:49:04,314 INFO sqlalchemy.engine.Engine [cached since 0.01604s ago] {'name': 'employee000006', 'phone': '000006', 'created_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279603, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279603, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:49:04,315 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:49:04,316 INFO sqlalchemy.engine.Engine [cached since 0.01768s ago] {'name': 'employee000007', 'phone': '000007', 'created_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279643, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279643, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:49:04,318 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:49:04,318 INFO sqlalchemy.engine.Engine [cached since 0.01985s ago] {'name': 'employee000008', 'phone': '000008', 'created_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279680, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279680, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:49:04,319 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:49:04,319 INFO sqlalchemy.engine.Engine [cached since 0.02132s ago] {'name': 'employee000009', 'phone': '000009', 'created_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279720, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279720, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:49:04,320 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:49:04,321 INFO sqlalchemy.engine.Engine [cached since 0.02268s ago] {'name': 'employee000010', 'phone': '000010', 'created_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279759, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 49, 4, 279759, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:49:04,323 INFO sqlalchemy.engine.Engine COMMIT
+```
+
+/**
+ * 10,000 件処理したときの時間
+ * autocommit あり
+ * loop 内で flush
+ */
+% python sqlalchemy_work.py 
+2021-06-08 15:36:16.736761+09:00 process start
+process had got 171.57751655578613sec to done.
+2021-06-08 15:39:08.314277+09:00 process had finished
+
+ログ抜粋( これは 10件処理したときのログから2件抜粋 )
+1件ずつトランザクションがかかっている事がわかる
+```
+2021-06-08 15:46:56,357 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2021-06-08 15:46:56,360 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:46:56,360 INFO sqlalchemy.engine.Engine [generated in 0.00036s] {'name': 'employee000001', 'phone': '000001', 'created_at': datetime.datetime(2021, 6, 8, 15, 46, 56, 341841, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 46, 56, 341841, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:46:56,365 INFO sqlalchemy.engine.Engine COMMIT
+2021-06-08 15:46:56,377 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2021-06-08 15:46:56,377 INFO sqlalchemy.engine.Engine INSERT INTO employee (name, phone, created_at, updated_at) VALUES (%(name)s, %(phone)s, %(created_at)s, %(updated_at)s)
+2021-06-08 15:46:56,377 INFO sqlalchemy.engine.Engine [cached since 0.01766s ago] {'name': 'employee000002', 'phone': '000002', 'created_at': datetime.datetime(2021, 6, 8, 15, 46, 56, 377034, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST')), 'updated_at': datetime.datetime(2021, 6, 8, 15, 46, 56, 377034, tzinfo=datetime.timezone(datetime.timedelta(seconds=32400), 'JST'))}
+2021-06-08 15:46:56,379 INFO sqlalchemy.engine.Engine COMMIT
+```
+

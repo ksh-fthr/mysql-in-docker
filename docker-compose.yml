@@ -1,12 +1,12 @@
 version: "3"
 
 networks: 
-  app-net:
+  app-mysql-net:
     driver: bridge
     ipam:
       driver: default
       config:
-        - subnet: 172.30.0.0/24
+        - subnet: 172.30.10.0/24
 
 services:
   app-python:
@@ -18,8 +18,8 @@ services:
     restart: always
     tty: true
     networks: 
-      app-net:
-        ipv4_address: 172.30.0.10
+      app-mysql-net:
+        ipv4_address: 172.30.10.10
 
   data-mysql:
     build: ./mysql/
@@ -37,5 +37,5 @@ services:
     ports:
       - 3306:3306
     networks: 
-      app-net:
-        ipv4_address: 172.30.0.100
+      app-mysql-net:
+        ipv4_address: 172.30.10.100

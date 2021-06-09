@@ -36,7 +36,7 @@ class MasterSlaveSession(SessionClass):
 
 myDB = URL.create(
     drivername='mysql+pymysql',
-    host='172.30.0.100',
+    host='172.30.10.100',
     port='3306',
     username='mysql',
     password='mysqladmin',

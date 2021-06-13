@@ -1,7 +1,7 @@
 version: "3"
 
 networks: 
-  app-mysql-net:
+  python-work-net:
     driver: bridge
     ipam:
       driver: default
@@ -9,7 +9,7 @@ networks:
         - subnet: 172.30.10.0/24
 
 services:
-  app-python:
+  app:
     build: ./python/
     container_name: "python-app"
     environment:
@@ -18,10 +18,10 @@ services:
     restart: always
     tty: true
     networks: 
-      app-mysql-net:
+      python-work-net:
         ipv4_address: 172.30.10.10
 
-  data-mysql:
+  mysql:
     build: ./mysql/
     container_name: "docker-mysql-work"
     volumes:
@@ -37,5 +37,5 @@ services:
     ports:
       - 3306:3306
     networks: 
-      app-mysql-net:
+      python-work-net:
         ipv4_address: 172.30.10.100

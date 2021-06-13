@@ -51,7 +51,7 @@ drwxr-xr-x 2 root root  4096  6月 13 18:14 util
 ### insert の実行
 `insert.py` を実行して `employee` テーブルにデータを登録します｡
 
-```python
+```bash
 root@hermes:/usr/local/python-app# python script/insert.py 
 2021-06-13 19:27:10.659317+09:00 process start
 2021-06-13 19:27:11,847 INFO sqlalchemy.engine.Engine SHOW VARIABLES LIKE 'sql_mode'

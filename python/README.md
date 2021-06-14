@@ -97,4 +97,3 @@ FROM employee
 process had got 18.806922674179077sec to done.
 2021-06-13 19:30:35.274445+09:00 process had finished
 ```
-

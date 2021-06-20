@@ -1,3 +1,7 @@
+# DB の確認
+mysql の Docker コンテナに入って DB 操作するときは以下の手順で行えます。
+
+
 # 作成される DB
 `docker-compose up -d --build` を実行することで `./mysql/init/initialize.sql` が実行され、mysql のコンテナには `company` DB が作成されます。
 DB の情報は以下のとおりです。
@@ -5,10 +9,6 @@ DB の情報は以下のとおりです。
 | DB名    | テーブル | ユーザ名 | パスワード |
 | ------- | -------- | -------- | ---------- |
 | company | employee | mysql    | Mysqladmin |
-
-
-# DB の確認
-mysql の Docker コンテナに入って DB 操作するときは以下の手順で行えます。
 
 
 ## ホスト側での操作

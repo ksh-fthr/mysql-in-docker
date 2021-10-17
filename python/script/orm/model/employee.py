@@ -1,9 +1,9 @@
 import sys
 
 from sqlalchemy import Column, String, Integer, DateTime
+from orm.preparation import Base
 
 sys.path.append("./script")
-from orm.preparation import Base
 
 
 ##
@@ -19,4 +19,7 @@ class Employee(Base):
     updated_at = Column(DateTime())
 
     def __repr__(self):
-        return "<Employee (id={}, name='{}', phone='{}'".format(self.id, self.name, self.phone)
+        return "<Employee (id={}, name='{}', phone='{}'".format(
+            self.id, self.name, self.phone
+        )
+

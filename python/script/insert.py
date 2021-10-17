@@ -1,11 +1,11 @@
 import sys
 import time
 
-sys.path.append("./script")
-
 from orm.preparation import Session
 from orm.model.employee import Employee
 from util.time_util import elapsed_time, jst_time
+
+sys.path.append("./script")
 
 
 ##

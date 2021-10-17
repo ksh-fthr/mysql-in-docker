@@ -1,11 +1,11 @@
 import sys
 import time
 
-sys.path.append("./script")
-
 from orm.preparation import Session
 from orm.model.employee import Employee
 from util.time_util import elapsed_time, jst_time
+
+sys.path.append("./script")
 
 
 ##
@@ -14,7 +14,7 @@ from util.time_util import elapsed_time, jst_time
 def update():
     rdb_session = Session()
     query = rdb_session.query(Employee).limit(10000)
-    
+
     for employee in query:
         work_time = jst_time(time.time())
         employee.name = employee.name.replace('employee', ('up_employess'))

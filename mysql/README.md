@@ -8,7 +8,7 @@ DB の情報は以下のとおりです。
 
 | DB名    | テーブル | ユーザ名 | パスワード |
 | ------- | -------- | -------- | ---------- |
-| company | employee | mysql    | Mysqladmin |
+| company | employee | mysql    | mysqladmin |
 
 
 ## ホスト側での操作
